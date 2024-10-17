@@ -30,10 +30,9 @@ def add_meeting(request):
 
     return render(request, 'meetings/new.html', {'form': form})
 
-def del_meeting(request):
+def del_meeting(request, id):
+    meeting = get_object_or_404(Meeting, id=id) 
     if request.method == 'POST':
-        meeting_id = request.POST.get('meeting_id')  
-        meeting = Meeting.objects.get(pk=meeting_id) 
         meeting.delete()  
         return redirect('meetings_list_view')
     else:
