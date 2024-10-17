@@ -1,0 +1,20 @@
+<div class="meetings-section">
+    <h2>Meetings</h2>
+    <ul>
+        {% for meeting in meetings %}
+        <li>
+            <a href="{% url 'detail' meeting.id %}">
+                {{ meeting.title }} 
+            </a>
+            -- <a href="{% url 'update_meeting' meeting.id %}">Modifier</a>
+            <form action="{% url 'del_meeting' %}" method="post"> 
+                {% csrf_token %}
+                <input type="hidden" name="meeting_id" value="{{ meeting.id }}"> 
+                <input type="submit" value="Supprimer">
+            </form>
+        </li>
+        {% empty %}
+        <li>No meetings available at the moment.</li>
+        {% endfor %}
+    </ul>
+</div>

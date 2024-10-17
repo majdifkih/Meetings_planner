@@ -1,0 +1,7 @@
+<h2>Modifier la Réunion</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Affiche le formulaire -->
+    <input type="submit" value="Mettre à Jour">
+</form>
